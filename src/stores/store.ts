@@ -12,6 +12,7 @@ export const useStateStore = defineStore('state', () => {
 export const useDataStore = defineStore('data', () => {
     const playerList = ref([])
     const musicList = ref([])
+    const playerSelect = ref('')
 
     function getPlayerList() {
         //get请求乐手
@@ -123,6 +124,6 @@ export const useDataStore = defineStore('data', () => {
         }
     }
 
-    return { playerList, musicList, getPlayerList, getMusicList, getFilterMusicList }
+    return { playerList, musicList, playerSelect,getPlayerList, getMusicList, getFilterMusicList }
 })
 

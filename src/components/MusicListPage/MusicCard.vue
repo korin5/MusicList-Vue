@@ -43,9 +43,9 @@
         <v-chip class="mr-2"> {{ music.tuning }} </v-chip>
       </v-card-subtitle>
 
-      <v-card-text class="pa-0 pl-6 mt-2 mb-2" style="position: absolute;right:12px;bottom:2px">
+      <!-- <v-card-text class="pa-0 pl-6 mt-2 mb-2" style="position: absolute;right:12px;bottom:2px">
         id: {{ index }}
-      </v-card-text>
+      </v-card-text> -->
 
     </v-card>
   </v-hover>

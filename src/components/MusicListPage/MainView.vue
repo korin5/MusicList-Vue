@@ -1,5 +1,8 @@
 <template>
-    <v-main min-height="300" class="bg-grey-lighten-5">
+    <v-main min-height="300" class=" bg-grey-lighten-5">
+
+        <PlayerInfo></PlayerInfo>
+
         <Filter></Filter>
 
         <v-row no-gutters class="pr-6 pt-6">
@@ -12,9 +15,10 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, watch, computed } from "vue";
-import Filter from "../components/Filter.vue";
-import MusicCard from "../components/MusicCard.vue";
-import { useDataStore } from "../stores/store";
+import Filter from "./Filter.vue";
+import MusicCard from "./MusicCard.vue";
+import PlayerInfo from './PlayerInfo.vue'
+import { useDataStore } from "../../stores/store";
 import { useRouter, useRoute } from 'vue-router'
 
 const store = useDataStore()

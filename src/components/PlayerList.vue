@@ -4,9 +4,12 @@
 
         <v-list-item v-for="(player, i) in playerList" :key="i" :value="player.name" :title='player.name' color="teal"
             class="w-100 ma-0 pt-2 pb-2" size="x-large" :prependAvatar='player.prependAvatar'>
+
         </v-list-item>
 
-        <v-btn prepend-icon="mdi-plus" class="w-100 ma-0 pa-2" rounded="0" variant="text"  size="x-large" color="teal">乐手</v-btn>
+
+        <v-btn @click="addmusic()" prepend-icon="mdi-plus" class="w-100 ma-0 pa-2" rounded="0" variant="text" size="x-large"
+            color="teal">乐手</v-btn>
         <!-- <v-btn prepend-icon="mdi-plus" class="w-100 ma-0 pa-2" rounded="0" variant="text"  size="x-large" color="teal">添加单曲</v-btn> -->
     </v-list>
 </template>
@@ -25,16 +28,28 @@ const route = useRoute()
 
 
 watch(playerSelect, async () => {
-    router.replace({ path: '/' + playerSelect.value })
+    router.replace({ path: '/player/' + playerSelect.value })
+    store.playerSelect = route.params.player.toString()
     store.getMusicList(playerSelect.value)
 })
 
 
 watch(() => route.params, async () => {
+    playerSelect.value = [route.params.player.toString()]
+    store.playerSelect = route.params.player.toString()
     store.getMusicList(route.params.player)
-    let player = route.params.player
+    // let player = route.params.player
     // console.log('route.params.player: ' + player)
     // console.log('playerSelect.value: ' + playerSelect.value)
 })
+
+onMounted(()=>{
+    playerSelect.value = [route.params.player.toString()]
+    store.playerSelect = route.params.player.toString()
+})
+
+function addmusic() {
+    router.push({ path: '/addplayer' })
+}
 
 </script>

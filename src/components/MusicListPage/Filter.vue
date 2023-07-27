@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch, onMounted } from "vue";
-import { useDataStore } from "../stores/store";
+import { useDataStore } from "../../stores/store";
 
 const store = useDataStore()
 const tunings = ref([]);
