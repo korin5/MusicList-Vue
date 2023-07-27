@@ -10,7 +10,6 @@
 
         <v-btn @click="addmusic()" prepend-icon="mdi-plus" class="w-100 ma-0 pa-2" rounded="0" variant="text" size="x-large"
             color="teal">乐手</v-btn>
-        <!-- <v-btn prepend-icon="mdi-plus" class="w-100 ma-0 pa-2" rounded="0" variant="text"  size="x-large" color="teal">添加单曲</v-btn> -->
     </v-list>
 </template>
 
@@ -19,7 +18,7 @@ import { ref, watch, onMounted, computed } from "vue";
 import { useDataStore } from '../stores/store'
 import { useRouter, useRoute } from 'vue-router'
 
-const playerSelect = ref(['井草圣二'])
+const playerSelect = ref([])
 const store = useDataStore()
 const playerList = computed(() => store.playerList)
 
@@ -35,17 +34,19 @@ watch(playerSelect, async () => {
 
 
 watch(() => route.params, async () => {
-    playerSelect.value = [route.params.player.toString()]
     store.playerSelect = route.params.player.toString()
     store.getMusicList(route.params.player)
-    // let player = route.params.player
-    // console.log('route.params.player: ' + player)
-    // console.log('playerSelect.value: ' + playerSelect.value)
 })
 
-onMounted(()=>{
+onMounted(() => {
+    store.getPlayerList()
+    store.getMusicList(route.params.player.toString())
+
+    console.log(store.musicList)
+
     playerSelect.value = [route.params.player.toString()]
     store.playerSelect = route.params.player.toString()
+
 })
 
 function addmusic() {
