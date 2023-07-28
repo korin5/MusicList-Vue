@@ -2,7 +2,9 @@ import { defineStore } from 'pinia'
 import { ref, reactive, watch, toRaw } from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL ='/api';
+axios.defaults.baseURL = '/api';
+
+
 
 export const useStateStore = defineStore('state', () => {
     const drawer = ref()
@@ -18,16 +20,16 @@ export const useDataStore = defineStore('data', () => {
         //get请求乐手
         axios.get('player')
             .then(function (response) {
-            // 处理成功情况
-            // console.log(response);
-            playerList.value = response.data
+                // 处理成功情况
+                // console.log(response);
+                playerList.value = response.data
             })
             .catch(function (error) {
-            // 处理错误情况
-            console.log(error);
+                // 处理错误情况
+                console.log(error);
             })
             .then(function () {
-            // 总是会执行
+                // 总是会执行
             });
         // playerList.value = [
         //     { "name": "井草圣二", prependAvatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg', },
@@ -38,18 +40,23 @@ export const useDataStore = defineStore('data', () => {
     }
     function getMusicList(playerSelect) {
         //get请求曲目
-        axios.get('player/'+playerSelect)
+        axios.get('player/' + playerSelect)
             .then(function (response) {
-            // 处理成功情况
-            // console.log(response.data);
-            musicList.value = response.data
+                // 处理成功情况
+                // console.log(response.data);
+                // console.log(response.data.length)
+                if (response.data.length == 0) {
+                    musicList.value = [-1]
+                } else {
+                    musicList.value = response.data
+                }
             })
             .catch(function (error) {
-            // 处理错误情况
-            // console.log(error);
+                // 处理错误情况
+                console.log(error);
             })
             .then(function () {
-            // 总是会执行
+                // 总是会执行
             });
         // if (playerSelect == '井草圣二') {
         //     musicList.value = [
@@ -124,6 +131,8 @@ export const useDataStore = defineStore('data', () => {
         }
     }
 
-    return { playerList, musicList, playerSelect,getPlayerList, getMusicList, getFilterMusicList }
+    
+
+    return { playerList, musicList, playerSelect, getPlayerList, getMusicList, getFilterMusicList }
 })
 

@@ -26,11 +26,18 @@ const router = useRouter()
 const route = useRoute()
 const musicList = computed(() => {
     let newList = []
-    for (let index in store.musicList) {
-        if (store.musicList[index].show === true) {
-            newList.push(store.musicList[index])
+    if (store.musicList[0] != -1) {
+        for (let index in store.musicList) {
+            if (store.musicList[index].show === true) {
+                newList.push(store.musicList[index])
+            }
         }
+    }else{
+        router.push({path:'/404'})
     }
+
+
+
     return newList;
 })
 </script>

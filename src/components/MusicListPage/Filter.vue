@@ -3,8 +3,10 @@
     <v-card class="ma-6 mb-0 pa-6" rounded="lg" height="auto" width="auto" :elevation="isHovering ? 10 : 2"
       v-bind="props">
 
-      <span><h3 class="text-h6">创作类型</h3></span>
-        
+      <span>
+        <h3 class="text-h6">创作类型</h3>
+      </span>
+
       <v-chip-group filter class="pa-0" multiple v-model="typeSelected">
         <v-chip color="teal" v-for="(type, i) in types" :key="i" :value="type">
           {{ type }}
@@ -39,16 +41,16 @@ watch(tuningSelected, async () => {
   // console.log('调音选择: ' + tuningSelected.value)
   // GET请求曲目
   store.getFilterMusicList({
-    "tuning" : tuningSelected.value,
-    "type" : typeSelected.value
+    "tuning": tuningSelected.value,
+    "type": typeSelected.value
   })
 })
 watch(typeSelected, async () => {
   // console.log('创作类型选择: ' + typeSelected.value)
   // GET请求曲目
   store.getFilterMusicList({
-    "tuning" : tuningSelected.value,
-    "type" : typeSelected.value
+    "tuning": tuningSelected.value,
+    "type": typeSelected.value
   })
 })
 watch(() => store.musicList, async () => {
@@ -64,10 +66,10 @@ onMounted(() => {
 })
 
 function showChips() {
-  typeSelected.value=[]
-  tuningSelected.value=[]
-  tunings.value=[]
-  types.value=[]
+  typeSelected.value = []
+  tuningSelected.value = []
+  tunings.value = []
+  types.value = []
   // console.log(store.musicList)
   store.musicList.forEach(function (music, index) {
     tunings.value[index] = music.tuning;

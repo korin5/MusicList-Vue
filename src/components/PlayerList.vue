@@ -28,24 +28,20 @@ const route = useRoute()
 
 watch(playerSelect, async () => {
     router.replace({ path: '/player/' + playerSelect.value })
-    store.playerSelect = route.params.player.toString()
-    store.getMusicList(playerSelect.value)
 })
-
 
 watch(() => route.params, async () => {
     store.playerSelect = route.params.player.toString()
-    store.getMusicList(route.params.player)
+    store.getMusicList(playerSelect.value)
 })
 
 onMounted(() => {
     store.getPlayerList()
     store.getMusicList(route.params.player.toString())
 
-    console.log(store.musicList)
-
     playerSelect.value = [route.params.player.toString()]
     store.playerSelect = route.params.player.toString()
+
 
 })
 
